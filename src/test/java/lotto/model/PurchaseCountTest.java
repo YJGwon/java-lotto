@@ -41,6 +41,6 @@ public class PurchaseCountTest {
         PurchaseCount purchaseCount = PurchaseCount.of(
                 Money.from(String.valueOf(count * LOTTO_PRICE)), String.valueOf(manualCount));
 
-        assertThat(purchaseCount.isTotal(7)).isTrue();
+        assertThat(purchaseCount.isAuto(7)).isTrue();
     }
 }

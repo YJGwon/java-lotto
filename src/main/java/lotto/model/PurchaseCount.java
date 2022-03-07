@@ -3,7 +3,7 @@ package lotto.model;
 public class PurchaseCount {
     private static final String ERROR_COUNT_OVER = "[ERROR] 구매할 수 있는 수량을 초과했습니다";
     private static final String ERROR_NEGATIVE = "[ERROR] 구매 수량은 0보다 작을 수 없습니다";
-    public static final String ERROR_TYPE = "[ERROR] 로또 구매 수량은 숫자로만 입력해주세요";
+    private static final String ERROR_TYPE = "[ERROR] 로또 구매 수량은 숫자로만 입력해주세요";
 
     private final int auto;
     private final int manual;
@@ -40,8 +40,8 @@ public class PurchaseCount {
         }
     }
 
-    public boolean isTotal(int count) {
-        return (this.auto + this.manual) == count;
+    public boolean isAuto(int count) {
+        return this.auto == count;
     }
 
     public boolean isManual(int count) {
