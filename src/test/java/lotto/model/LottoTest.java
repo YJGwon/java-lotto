@@ -21,18 +21,10 @@ public class LottoTest {
         }
     }
 
-    @DisplayName("6개의 숫자를 생성한다")
-    @Test
-    void generate_six_number() {
-        Lotto lotto = Lotto.ofRandom();
-
-        assertThat(lotto.getValues().size()).isEqualTo(6);
-    }
-
     @DisplayName("6개의 숫자가 오름차순으로 정렬된다")
     @Test
     void sort_ascending() {
-        Lotto lotto = Lotto.ofRandom();
+        Lotto lotto = Lotto.from(List.of("2", "1", "30", "43", "7", "12"));
         List<Integer> numberValues = lotto.getValues();
 
         for (int index = 0; index < (numberValues.size() - 1); index++) {

@@ -23,6 +23,13 @@ public class LottoNumberFactoryTest {
         assertThat(LottoNumberFactory.getNumber(String.valueOf(number)).getValue()).isEqualTo(number);
     }
 
+    @DisplayName("원하는 개수 만큼의 LottoNumber를 반환한다")
+    @ParameterizedTest(name = "{0}개의 LottoNumber를 반환한다")
+    @ValueSource(ints = {1, 6, 10})
+    void get_number_size(int count) {
+        assertThat(LottoNumberFactory.getRandomNumbers(count).size()).isEqualTo(count);
+    }
+
     @DisplayName("랜덤 로또를 추출한 후에도 알맞는 LottoNumber를 반환한다")
     @ParameterizedTest(name = "{0}에 해당하는 LottoNumber를 반환한다")
     @ValueSource(ints = {1, 15, 40, 23})

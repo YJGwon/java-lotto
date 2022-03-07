@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,9 +43,18 @@ public class Lotto {
                 .count();
     }
 
-    public static Lotto ofRandom() {
+    public static List<Lotto> ofRandom(PurchaseCount purchaseCount) {
+        List<Lotto> randomLottos = new ArrayList<>();
+        while (!purchaseCount.isAuto(randomLottos.size())) {
+            randomLottos.add(ofRandom());
+        }
+        return randomLottos;
+    }
+
+    private static Lotto ofRandom() {
         return new Lotto(LottoNumberFactory.getRandomNumbers(NUMBERS_SIZE));
     }
+
 
     public static Lotto from(List<String> rawNumbers) {
         List<LottoNumber> numbers = rawNumbers.stream()

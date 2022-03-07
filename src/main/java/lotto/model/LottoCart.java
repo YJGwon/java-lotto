@@ -21,9 +21,7 @@ public class LottoCart {
     }
 
     public void addAutoLottos() {
-        while (!purchaseCount.isAuto(autoLottos.size())) {
-            this.autoLottos.add(Lotto.ofRandom());
-        }
+        this.autoLottos.addAll(Lotto.ofRandom(purchaseCount));
     }
 
     public boolean isManualAvailable() {
