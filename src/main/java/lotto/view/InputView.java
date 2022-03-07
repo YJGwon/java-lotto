@@ -10,20 +10,30 @@ public class InputView {
     private static final String MESSAGE_MANUAL_NUMBERS = "수동으로 구매할 번호를 입력해 주세요.";
     private static final String WINNING_NUMBER_DELIMITER = ",";
 
+    private static final String ERROR_TYPE = "[ERROR] 숫자로만 입력하세요";
+
     private final Scanner scanner;
 
     public InputView() {
         scanner = new Scanner(System.in);
     }
 
-    public String askMoneyAmount() {
+    public int askMoneyAmount() {
         System.out.println(MESSAGE_MONEY_AMOUNT);
-        return scanner.nextLine();
+        return readNextInt();
     }
 
-    public String askManualCount() {
+    public int askManualCount() {
         System.out.println(MESSAGE_MANUAL_COUNT);
-        return scanner.nextLine();
+        return readNextInt();
+    }
+
+    private int readNextInt() {
+        try {
+            return scanner.nextInt();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_TYPE);
+        }
     }
 
     public void askManualNumbers() {
@@ -39,12 +49,13 @@ public class InputView {
         return splitByComma(scanner.nextLine());
     }
 
+    private String[] splitByComma(String string) {
+        return string.split(WINNING_NUMBER_DELIMITER);
+    }
+
     public String askBonusNumber() {
         System.out.println(MESSAGE_BONUS_NUMBER);
         return scanner.nextLine();
     }
 
-    private String[] splitByComma(String string) {
-        return string.split(WINNING_NUMBER_DELIMITER);
-    }
 }

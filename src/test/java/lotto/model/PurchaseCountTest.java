@@ -14,9 +14,9 @@ public class PurchaseCountTest {
     void error_bigger_than_total() {
         int count = 3;
         int manualCount = 4;
-        Money money = Money.from(String.valueOf(count * LOTTO_PRICE));
+        Money money = new Money(count * LOTTO_PRICE);
 
-        assertThatThrownBy(() -> PurchaseCount.of(money, String.valueOf(manualCount)))
+        assertThatThrownBy(() -> PurchaseCount.of(money, manualCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구매할 수 있는 수량을 초과했습니다");
     }
@@ -26,9 +26,9 @@ public class PurchaseCountTest {
     void error_negative() {
         int count = 10;
         int manualCount = -3;
-        Money money = Money.from(String.valueOf(count * LOTTO_PRICE));
+        Money money = new Money(count * LOTTO_PRICE);
 
-        assertThatThrownBy(() -> PurchaseCount.of(money, String.valueOf(manualCount)))
+        assertThatThrownBy(() -> PurchaseCount.of(money, manualCount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구매 수량은 0보다 작을 수 없습니다");
     }
@@ -39,7 +39,7 @@ public class PurchaseCountTest {
         int count = 10;
         int manualCount = 3;
         PurchaseCount purchaseCount = PurchaseCount.of(
-                Money.from(String.valueOf(count * LOTTO_PRICE)), String.valueOf(manualCount));
+                new Money(count * LOTTO_PRICE), manualCount);
 
         assertThat(purchaseCount.isAuto(7)).isTrue();
     }

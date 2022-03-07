@@ -24,7 +24,7 @@ public class PrizeCountMapTest {
 
         PrizeCountMap prizeCountMap = PrizeCountMap.from(matchResults);
 
-        assertThat(prizeCountMap.calculateEarningRate(Money.from("10000"))).isEqualTo(0.5);
+        assertThat(prizeCountMap.calculateEarningRate(new Money(10000))).isEqualTo(0.5);
     }
 
     @DisplayName("100000원 어치를 사고 4등 1장, 5등 5장 당첨됐을때 수익률은 0.75이다")
@@ -34,7 +34,7 @@ public class PrizeCountMapTest {
         addResult(new MatchResult(3, false), 5);
         PrizeCountMap prizeCountMap = PrizeCountMap.from(matchResults);
 
-        assertThat(prizeCountMap.calculateEarningRate(Money.from("100000"))).isEqualTo(0.75);
+        assertThat(prizeCountMap.calculateEarningRate(new Money(100000))).isEqualTo(0.75);
     }
 
     private void addResult(MatchResult matchResult, int count) {

@@ -32,7 +32,7 @@ public class Controller {
     }
 
     private Money askMoneyAmount() {
-        return Money.from(inputView.askMoneyAmount());
+        return new Money(inputView.askMoneyAmount());
     }
 
     private Lottos makeLottos(Money money) {

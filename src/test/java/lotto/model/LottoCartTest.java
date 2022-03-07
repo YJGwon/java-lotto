@@ -14,7 +14,7 @@ public class LottoCartTest {
     void manual_not_available() {
         int manualCount = 3;
         PurchaseCount purchaseCount = PurchaseCount.of(
-                Money.from(String.valueOf(manualCount * LOTTO_PRICE)), String.valueOf(manualCount));
+                new Money(manualCount * LOTTO_PRICE), manualCount);
         LottoCart lottoCart = new LottoCart(purchaseCount);
         for (int i = 0; i < manualCount; i++) {
             lottoCart.addManualLotto(List.of("1", "2", "3", "4", "5", "6"));
